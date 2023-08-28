@@ -25,6 +25,7 @@
 					},
 					"sink": {
 						"type": "SqlServerSink",
+						"preCopyScript": "truncate table [stage].[BanksData]",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false
 					},
@@ -186,6 +187,38 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Delete Source file",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "ArchiveBankFile",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds_Banks_src",
+						"type": "DatasetReference"
+					},
+					"enableLogging": false,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
+				}
 			}
 		],
 		"annotations": []
