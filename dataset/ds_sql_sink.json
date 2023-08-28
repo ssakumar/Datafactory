@@ -1,0 +1,47 @@
+{
+	"name": "ds_sql_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sqlpractice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Date",
+				"type": "date"
+			},
+			{
+				"name": "Amount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AcctType",
+				"type": "varchar"
+			},
+			{
+				"name": "OpenedBy",
+				"type": "varchar"
+			},
+			{
+				"name": "Branch",
+				"type": "varchar"
+			},
+			{
+				"name": "Customer",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "stage",
+			"table": "BanksData"
+		}
+	}
+}

@@ -1,0 +1,21 @@
+{
+	"name": "ds_Banks_src",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_storageaccounta",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "data",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "bank accounts.xlsx",
+				"fileSystem": "source"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	}
+}
