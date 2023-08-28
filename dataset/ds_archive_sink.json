@@ -1,0 +1,23 @@
+{
+	"name": "ds_archive_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_storageaccounta",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Bank",
+				"fileSystem": "archive"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
