@@ -152,6 +152,14 @@
 					"referenceName": "ls_sqlpractice",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"schema": {
+						"type": "string"
+					},
+					"table": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "SqlServerTable",
 				"schema": [
@@ -323,7 +331,10 @@
 							{
 								"referenceName": "ds_sql_sink",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"schema": "stage",
+									"table": "BanksData"
+								}
 							}
 						]
 					},
@@ -332,7 +343,7 @@
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Load Banks data",
+								"activity": "Copy data from Bankfile",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -423,33 +434,6 @@
 								"enablePartitionDiscovery": false
 							}
 						}
-					},
-					{
-						"name": "Load Banks data",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [
-							{
-								"activity": "Copy data from Bankfile",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[dbo].[usp_banksdata]"
-						},
-						"linkedServiceName": {
-							"referenceName": "ls_sqlpractice",
-							"type": "LinkedServiceReference"
-						}
 					}
 				],
 				"policy": {
@@ -462,8 +446,7 @@
 				"[concat(variables('factoryId'), '/datasets/ds_Banks_src')]",
 				"[concat(variables('factoryId'), '/datasets/ds_sql_sink')]",
 				"[concat(variables('factoryId'), '/datasets/ds_archive_src')]",
-				"[concat(variables('factoryId'), '/datasets/ds_archive_sink')]",
-				"[concat(variables('factoryId'), '/linkedServices/ls_sqlpractice')]"
+				"[concat(variables('factoryId'), '/datasets/ds_archive_sink')]"
 			]
 		}
 	]
