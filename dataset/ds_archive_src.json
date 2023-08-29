@@ -11,7 +11,10 @@
 			"sheetName": "data",
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "bank accounts.xlsx",
+				"fileName": {
+					"value": "@concat('bankaccounts_',formatDateTime(convertTimeZone(utcNow(),'UTC','Eastern Standard Time'),'MMddyyy'),'.xlsx')",
+					"type": "Expression"
+				},
 				"fileSystem": "source"
 			},
 			"firstRowAsHeader": true

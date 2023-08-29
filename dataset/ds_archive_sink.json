@@ -10,7 +10,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "Bank",
+				"fileName": {
+					"value": "@concat('bankaccounts_',formatDateTime(convertTimeZone(utcNow(),'UTC','Eastern Standard Time'),'MMddyyy'),'.xlsx')",
+					"type": "Expression"
+				},
 				"fileSystem": "archive"
 			},
 			"columnDelimiter": ",",
