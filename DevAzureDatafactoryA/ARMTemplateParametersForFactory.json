@@ -5,11 +5,20 @@
 		"factoryName": {
 			"value": "DevAzureDatafactoryA"
 		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"SqlServer1_connectionString": {
+			"value": ""
+		},
 		"ls_sqlpractice_connectionString": {
 			"value": ""
 		},
 		"ls_storageaccounta_accountKey": {
 			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://devstorageaccounta.dfs.core.windows.net/"
 		},
 		"ls_storageaccounta_properties_typeProperties_url": {
 			"value": "https://devstorageaccounta.dfs.core.windows.net/"
