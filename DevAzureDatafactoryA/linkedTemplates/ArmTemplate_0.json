@@ -69,7 +69,10 @@
 					"sheetName": "data",
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "bank accounts.xlsx",
+						"fileName": {
+							"value": "@concat('bankaccounts_',formatDateTime(convertTimeZone(utcNow(),'UTC','Eastern Standard Time'),'MMddyyy'),'.xlsx')",
+							"type": "Expression"
+						},
 						"fileSystem": "source"
 					},
 					"firstRowAsHeader": true
@@ -94,7 +97,10 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "Bank",
+						"fileName": {
+							"value": "@concat('bankaccounts_',formatDateTime(convertTimeZone(utcNow(),'UTC','Eastern Standard Time'),'MMddyyy'),'.xlsx')",
+							"type": "Expression"
+						},
 						"fileSystem": "archive"
 					},
 					"columnDelimiter": ",",
@@ -123,7 +129,10 @@
 					"sheetName": "data",
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "bank accounts.xlsx",
+						"fileName": {
+							"value": "@concat('bankaccounts_',formatDateTime(convertTimeZone(utcNow(),'UTC','Eastern Standard Time'),'MMddyyy'),'.xlsx')",
+							"type": "Expression"
+						},
 						"fileSystem": "source"
 					},
 					"firstRowAsHeader": true
@@ -215,6 +224,7 @@
 							},
 							"sink": {
 								"type": "SqlServerSink",
+								"preCopyScript": "truncate table [stage].[BanksData]",
 								"writeBehavior": "insert",
 								"sqlWriterUseTableLock": false
 							},
@@ -380,6 +390,39 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "Delete Source file",
+						"type": "Delete",
+						"dependsOn": [
+							{
+								"activity": "ArchiveBankFile",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "ds_Banks_src",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"enableLogging": false,
+							"storeSettings": {
+								"type": "AzureBlobFSReadSettings",
+								"recursive": true,
+								"enablePartitionDiscovery": false
+							}
+						}
 					}
 				],
 				"policy": {
