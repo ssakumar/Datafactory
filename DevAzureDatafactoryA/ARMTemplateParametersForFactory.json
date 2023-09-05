@@ -8,6 +8,9 @@
 		"AzureDataLakeStorage1_accountKey": {
 			"value": ""
 		},
+		"RestService1_password": {
+			"value": ""
+		},
 		"SqlServer1_connectionString": {
 			"value": ""
 		},
@@ -19,6 +22,15 @@
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://devstorageaccounta.dfs.core.windows.net/"
+		},
+		"HttpServer1_properties_typeProperties_url": {
+			"value": "https://opendata.ecdc.europa.eu"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"value": "https://www.kaggle.com/datasets/nelgiriyewithana/global-missing-migrants-dataset?resource=download"
+		},
+		"RestService1_properties_typeProperties_userName": {
+			"value": "aishu.tfc@gmail.com"
 		},
 		"ls_storageaccounta_properties_typeProperties_url": {
 			"value": "https://devstorageaccounta.dfs.core.windows.net/"
