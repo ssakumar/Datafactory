@@ -1,0 +1,23 @@
+{
+	"name": "ds_http_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_storageaccounta",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "cases",
+				"fileSystem": "http"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
